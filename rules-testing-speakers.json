@@ -1,0 +1,114 @@
+{
+    "standard time": {
+        "type": "choice",
+        "guidance": "Going to use standard times or no?",
+        "text": [{
+            "summary": "Standard times",
+            "val": "Using standard times",
+            "speak": {
+                "key": "timeFrames",
+                "value": "standard"
+            }
+        }, {
+            "summary": "Standard times",
+            "val": "Using NON standard times",
+            "speak": {
+                "key": "timeFrames",
+                "value": "nonStandard"
+            }
+        }]
+    },
+
+    "document advantage": {
+        "type": "choice",
+        "guidance": "Who will the document be favourable to?",
+        "text": [{
+            "summary": "Favourable to Seller",
+            "val": "Document favours Seller",
+            "speak": {
+                "key": "advantage",
+                "value": "Seller"
+            }
+        }, {
+            "summary": "Favourable to Buyer",
+            "val": "Document favours Buyer",
+            "speak": {
+                "key": "advantage",
+                "value": "Buyer"
+            }
+        }, {
+            "summary": "Remove the third topic",
+            "val": "Third topic removed",
+            "speak": {
+                "key": "thirdRemove",
+                "value": "true"
+            }
+        }]
+    },
+    "times": {
+        "type": "choice",
+        "guidance": "Do you want standard times?",
+        "text": [{
+            "summary": "Yes",
+            "val": "Standard times in place.",
+            "speak": {
+                "key": "standardTimes",
+                "value": "true"
+            }
+        }, {
+            "summary": "No",
+            "val": "Standard times NOT in place",
+            "speak": {
+                "key": "standardTimes",
+                "value": "false"
+            }
+        }]
+    },
+    "standard list": {
+        "type": "choice",
+        "guidance": "Click yes populate the standard list in section 10.",
+        "text": [{
+            "summary": "Yes",
+            "val": "Standard list in place.",
+            "speak": {
+                "key": "standardList",
+                "value": "true"
+            }
+        }, {
+            "summary": "No",
+            "val": "Standard list NOT in place",
+            "speak": {
+                "key": "standardList",
+                "value": "false"
+            }
+        }]
+    },
+    "Confidential Information": {
+        "type": "list",
+        "guidance": "Who is **receiving** Confidential Information??",
+        "text": [{
+            "summary": "Set confidentialty",
+            "val": "set confidentiality one way",
+            "speak": {
+                "key": "confidentiality",
+                "value": "oneWay"
+            }
+        }, {
+            "summary": "Remove the sixth topic",
+            "val": "6th topic removed",
+            "speak": {
+                "key": "sixthRemove",
+                "value": "true"
+            }
+        }]
+    },
+    "remove optional widgets": {
+        "type": "optional",
+        "guidance": "Answer yes and the fourth topic is removed.",
+        "text": "Fourth topic removed.",
+        "speak": {
+            "key": "include8th",
+            "value": "true"
+        }
+    }
+}
