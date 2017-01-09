@@ -1,0 +1,278 @@
+{
+     "fill example": {
+        "type": "blank",
+        "guidance": "Enter the day as a number.",
+        "text": "1"
+    },
+     "multiline input widget": {
+        "type": "blank",
+        "guidance": "This is an example of multiline input widget.",
+        "text": "Here we can add multi line text with multi line input widget",
+         "multiline":true
+    },
+     "single line input widget": {
+        "type": "blank",
+        "guidance": "This is an example of single line input widget.",
+        "text": "Here we can add single line text"
+    },
+     "top level widget": {
+        "type": "optional",
+        "guidance": "Select top level widget",
+        "text": "It is removed and here is dependent input widget {{multiline input widget}} "
+    },
+    "confidentiality limits test": {
+        "type": "optional",
+        "listen": [{
+            "key": "standardTimes",
+            "value": "true",
+            "action": "remove()"
+        }],
+        "guidance": "Do you want to limit this confidentiality obligation to _certain kinds_ of information, or to allow the disclosure of _some_ information in certain circumstances?",
+        "text": "It is removed"
+    },
+     "indemnity risks": {
+        "type": "list",
+        "guidance": "Select the types of risks to limit.",
+        "text": [{
+            "summary": "data law",
+            "val": "**Risks on data**, including:\n{{repeating invoice}}"
+        }, {
+            "summary": "Risks relating to this agreement",
+            "val": "**Risks relating to the Agreement**, including:\n{{agreement indemnity risks}}"
+        }],
+        "post": "",
+        "penultimate": "\n\n",
+        "connector": "\n\n"
+    },
+    "exceptions to limits": {
+        "type": "optional",
+        "guidance": "Are there circumstances where this claim limit does not apply?  If you answer yes, it means you want a different claim limit to apply to certain types of risk.",
+        "text": ", **except for** {{limit exception type}}",
+        "listen": [{
+            "key": "advantage",
+            "value": "{{party 1}}",
+            "action": "remove()"
+        }, {
+            "key": "advantage",
+            "value": "{{party 2}}",
+            "action": "remove()"
+        }]
+    },
+         "limit exception type": {
+        "type": "choice",
+        "guidance": "What exception applies to the claim limit above?",
+        "text": [{
+            "summary": "The negligence of {{party 1}}",
+            "val": "claims caused by the negligence of {{party 1}} in relation to the Services, where {{exception limit}}"
+        }, {
+            "summary": "Work of a certain type by {{party 1}}.",
+            "val": "work by {{party 1}} connected with {{work type}}, where {{exception limit}}"
+        }, {
+            "summary": "Another type of exception not listed above",
+            "val": "{{exception description blank}}, where {{exception limit}}"
+        }]
+    },
+
+    "exception description blank": {
+        "type": "blank",
+        "guidance": "Describe the exception to the claim limit using wording that fits into the sentence above.",
+        "text": ""
+    },
+     "exception limit": {
+        "type": "choice",
+        "guidance": "We've created an exception to the claim limit, but it is a good idea to specify a claim limit for the exception.  Choose the claim limit for the exception.",
+        "text": [{
+            "summary": "Limit liability for the exception to a certain amount.",
+            "val": "{{party 2}}'s claim is Limited To The Amount {{limit amount}}"
+        }, {
+            "summary": "Limit liability for the exception to direct loss",
+            "val": "{{party 2}}'s claim is Limited To Direct Loss Claims"
+        }]
+    },
+      "limit amount": {
+        "type": "choice",
+        "guidance": "Choose how to describe the limiting amount.",
+        "text": [{
+            "summary": "A specific dollar like \"$1,000,000\".",
+            "val": "${{amount limit}}",
+            "jurisdiction": "Australia"
+        }, {
+            "summary": "A specific amount like \"£1,000,000\".",
+            "val": "£{{amount limit}}",
+            "jurisdiction": "England Wales"
+        }, {
+            "summary": "An amount described by referring to the cost of the Services like \"double the cost of the services\".",
+            "val": "an amount equal to 1000"
+        }, {
+            "summary": "The amount {{party 1}}'s insurer pays out.",
+            "val": "the amount paid by the insurer of {{party 1}} in relation to a claim by {{party 2}}"
+        }]
+    },
+         "amount limit": {
+        "type": "blank",
+        "guidance": "Enter a number to set the amount that quantifies the limit.",
+        "text": "1,000,000"
+    },
+     "agreement indemnity risks": {
+        "type": "list",
+        "guidance": "Select the types of risks to get indemnified for.",
+        "text": [{
+            "summary": "",
+            "val": "- {{party 2}}'s breach of the {{repeating invoice}}Agreement"
+        }, {
+            "summary": "",
+            "val": "- any negligent act of {{party 2}} connected and remove dependent{{confidentiality limits test}} with the Services"
+        }, {
+            "summary": "",
+            "val": "- third party reliance on the Services under a contract with {{party 2}}"
+        }, {
+            "summary": "",
+            "val": "- {{party 2}}'s use of the Services in connection with unlawful activity"
+        }],
+        "post": ".",
+        "penultimate": "; and\n",
+        "connector": ";\n"
+    },
+     "period number": {
+        "type": "blank",
+        "guidance": "Type in a number.",
+        "text": "7"
+    },
+     "plural": {
+        "type": "optional",
+        "guidance": "Do we need a plural here?  Is the number more than one?",
+        "text": "s",
+        "calc": "answerDependsOn(['period number', 'time limit scope month', 'time limit scope year'], function(result) { var a = parseInt(result); if(a > 1) {return 's' } else {return ''} })"
+    },
+     
+    "repeating invoice": {
+        "type": "choice",
+         "listen": [{
+            "key": "standardTimes",
+            "value": "true",
+            "action": "select(1)"
+        }],
+        "guidance": "Do you want a single invoice at the completion of the services, or regularly repeating invoices?",
+        "text": [{
+            "summary": "A one-off invoice after the completion of services.",
+            "val": "upon the completion of the Services"
+        }, {
+            "summary": "Regularly repeating invoices.",
+            "val": "during the previous {{billing cycle period}}"
+        }]
+
+    },
+     "billing cycle period": {
+        "type": "choice",
+        "guidance": "Monthly billing cycles are common, but they're not your only option",
+        "text": [{
+            "summary": "",
+            "val": "month"
+        }, {
+            "summary": "",
+            "val": "fortnight"
+        }, {
+            "summary": "",
+            "val": "quarter"
+        }]
+    },
+         "confidentiality purpose": {
+        "type": "choice",
+        "guidance": "Select the permitted use of the confidential information",
+        "listen": [{
+            "key": "confidentiality",
+            "value": "oneWay",
+            "action": "select(3)"
+        }, {
+            "key": "confidentiality",
+            "value": "mutual",
+            "action": "select(1)"
+        }],
+        "text": [{
+            "summary": "Providing services",
+            "val": "providing the Service"
+        }, {
+            "summary": "Collaboration on a project by the parties",
+            "val": "working with the other party in relation to {{collaboration project}}"
+        }, {
+            "summary": "A transaction between the parties",
+            "val": "the transaction between the parties relating to {{transaction}}"
+        }, {
+            "summary": "One party providing the other a trial of a product",
+            "val": "a trial by {{trial taker}} of {{trial product}}"
+        }, {
+            "summary": "Some other purpose (you will need to fill this out).",
+            "val": "confidentiality purpose blank"
+        }]
+    },
+    "collaboration project": {
+        "type": "blank",
+        "guidance": "Describe the project that the customer needs services for.",
+        "text": ""
+    },
+    "transaction": {
+        "type": "blank",
+        "guidance": "Describe the transaction that the Confidential Information will be disclosed in relation to.",
+        "text": ""
+    },
+    "trial product": {
+        "type": "blank",
+        "guidance": "Describe the trial product that the Confidential Information will be disclosed in relation to.",
+        "text": ""
+    },
+    "insert optional": {
+        "type": "optional",
+        "guidance": "Do you want to limit this confidentiality obligation to _certain kinds_ of information, or to allow the disclosure of _some_ information in certain circumstances?",
+        "text": "This is the text to insert {{confidentiality purpose}} "
+    },
+    "remove optional": {
+        "type": "optional",
+        "guidance": "Do you want to limit this confidentiality obligation to _certain kinds_ of information, or to allow the disclosure of _some_ information in certain circumstances?",
+        "text": "This is the text to insert and {{exceptions to limits}}"
+    },
+    "notice period": {
+        "type": "choice",
+        "listen": {
+            "key": "standardTimes",
+            "value": "true",
+            "action": "fill('7 days')"
+        },
+        "guidance": "Do you want to measure the notice period in days or months? In the next step you can say how many days or months.\n\nMake sure you give users enough time to make adjustments - the aim is to be \"reasonable\".",
+        "text": [{
+            "summary": "Notice period of days.",
+            "val": "{{period number}} day{{plural}} and {{insert optional}}"
+        }, {
+            "summary": "Notice period of months.",
+            "val": "{{period number}} month{{plural}}"
+        }, {
+            "summary": "Notice period of week.",
+            "val": "{{period number}} week{{plural}}"
+        }]
+    },
+    "list example": {
+        "type": "list",
+        "guidance": "Select the type of confidential information to protect.",
+        "listen": [{
+            "key": "standardList",
+            "value": "true",
+            "action": "select([1,2,3,4])"
+        }],
+        "text": [{
+            "summary": "Trade secrets",
+            "val": "- trade secrets"
+        }, {
+            "summary": "Business model",
+            "val": "- business model"
+        }, {
+            "summary": "Research projects",
+            "val": "- research projects"
+        }, {
+            "summary": "Other types of information (you will need to fill this out)",
+            "val": "- {{notice period}} and {{remove optional}}"
+        }],
+        "post": "\n",
+        "penultimate": "; and\n",
+        "connector": "\n"
+    }
+   
+}
