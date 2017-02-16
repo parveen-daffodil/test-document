@@ -1,6 +1,6 @@
 # Client Agreement and Disclosure
 
-`Purpose` To create an agreement Testing updateGithubDoc for next between a NSW law firm and client Test.
+`Purpose` To create an agreement Testing updateGithubDoc for next between a NSW law firm and client Test test Final Test.
 
 `Party 1 Name` Firm
 
