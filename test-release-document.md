@@ -153,8 +153,6 @@ https://github.com/Codepact/topics/blob/master/necessary_bureaucracy.md
 
 ## Definitions
 
-https://github.com/pjbrow/nsw_client_agreement/blob/master/client_agreement_definitions.md
-
 https://github.com/Codepact/lawpatch/blob/master/definitions.md
 
 https://github.com/Codepact/lawpatch/blob/master/positions.md
